@@ -62,7 +62,9 @@ async function ProductDetails({ params }) {
               price: product.price,
               image: product.image,
               stock: product.stock,
-              qty: 1,
+              description: product.description,
+              product: String(product._id),
+              quantity: 1,
             }}
           />
         </div>

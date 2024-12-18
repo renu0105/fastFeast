@@ -6,7 +6,7 @@ const OrderSchema = new mongoose.Schema(
     items: [
       {
         product: {
-          type: mongoose.Schema.Types.ObjectId,
+          type: mongoose.Schema.Types.ObjectId, // product id
           ref: "Product",
           required: true,
         },
@@ -28,35 +28,27 @@ const OrderSchema = new mongoose.Schema(
 
     paymentMethod: {
       type: String,
-      required: true,
     },
     paymentResult: {
       type: String,
-      required: true,
     },
     itemsPrice: {
       type: Number,
-      required: true,
     },
     shippingPrice: {
       type: Number,
-      required: true,
     },
     taxPrice: {
       type: Number,
-      required: true,
     },
     totalPrice: {
       type: Number,
-      required: true,
     },
     isPaid: {
       type: Boolean,
-      required: true,
     },
     isDelivered: {
       type: Boolean,
-      required: true,
     },
     paidAt: {
       type: Date,

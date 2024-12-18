@@ -38,30 +38,3 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "error" }, { status: 500 });
   }
 }
-
-export async function PATCH(req) {
-  await connectToDb();
-  try {
-    const { productId, rating } = await req.json();
-
-    if (!rating || rating < 1 || rating > 5) {
-      return NextResponse.json(
-        { error: "Rating must be between 1 and 5" },
-        { status: 400 }
-      );
-    }
-
-    const product = await Product.findById(productId);
-    if (!product) {
-      return NextResponse.json({ error: "Product not found" }, { status: 404 });
-    }
-
-    product.ratings.push(rating);
-    product.updateAverageRating();
-    await product.save();
-
-    return NextResponse.json(product);
-  } catch (error) {
-    return NextResponse.json({ error });
-  }
-}

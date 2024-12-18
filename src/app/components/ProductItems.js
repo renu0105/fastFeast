@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 const ProductItems = () => {
   const [card, setCard] = useState([]);
-  const [selectedRating, setSelectedRating] = useState({});
 
   useEffect(() => {
     const fetchedData = async () => {

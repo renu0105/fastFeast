@@ -7,19 +7,33 @@ import CheckoutSteps from "../components/CheckOutSteps";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const PlaceOrder = () => {
   const router = useRouter();
   const { shippingAddress, PaymentMethod, items } = useCartService();
   const [loading, setLoading] = useState(false);
 
+  const { data: session, status } = useSession();
+  console.log("session", session, status);
+
   const handlePlaceOrder = async () => {
     setLoading(true);
+
+    if (status !== "authenticated") {
+      setLoading(false);
+      toast.error("Please login to place order");
+
+      router.push("/login");
+      return;
+    }
+
     try {
       const res = await axios.post("/api/orders", {
         shippingAddress,
         PaymentMethod,
         items,
+        user: session.user.email,
       });
 
       if (res.error) {
@@ -29,7 +43,7 @@ const PlaceOrder = () => {
       }
 
       toast.success("Order Placed Successfully");
-      // router.push("/order-success");
+      router.push("/thankYou");
     } catch (error) {
       toast.error(error.message);
     } finally {

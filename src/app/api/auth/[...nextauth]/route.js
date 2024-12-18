@@ -50,6 +50,33 @@ const handler = NextAuth({
       session.user.id = token.id;
       session.user.name = token.name;
       session.user.email = token.email;
+
+      try {
+        await connectToDb();
+
+        // Check if the user already exists
+        const existingUser = await UserModel.findOne({ email: token.email });
+
+        if (!existingUser) {
+          const hashedPassword = await bcrypt.hash(token.id, 10);
+
+          // Create a new user object
+          const newUser = new UserModel({
+            name: token.name,
+            email: token.email,
+            password: hashedPassword,
+            createdAt: new Date(),
+          });
+
+          // Save the user to the database
+          await newUser.save();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
+      // 111030799603788799556
+
       return session;
     },
   },

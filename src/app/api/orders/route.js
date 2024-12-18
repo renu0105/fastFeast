@@ -1,5 +1,6 @@
 import connectToDb from "@/app/middleware/connectToDb";
 import OrderModel from "@/app/models/OrderModel";
+import UserModel from "@/app/models/UserModel";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, res) => {
@@ -24,17 +25,19 @@ export const POST = async (req, res) => {
   try {
     const body = await req.json();
     console.log("post order body", body);
-    // Basic validation for required fields
-    // if (!body.name || !body.price) {
-    //   return NextResponse.json(
-    //     { success: false, error: "Name and price are required" },
-    //     { status: 400 }
-    //   );
-    // }
+    const isUser = await UserModel.findOne({ email: body.user });
+    if (!isUser) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
-    // const orders = await OrderModel.create(body);
-    return NextResponse.json({ success: true, orders: body }, { status: 201 });
+    const orders = await OrderModel.create({
+      ...body,
+      user: isUser._id,
+    });
+
+    return NextResponse.json({ success: true, orders }, { status: 201 });
   } catch (error) {
+    console.log("error", error);
     return NextResponse.json({ error: "error" }, { status: 500 });
   }
 };
