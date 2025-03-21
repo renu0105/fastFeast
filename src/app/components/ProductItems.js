@@ -31,12 +31,12 @@ const ProductItems = () => {
   return (
     <div className="mx-3 lg:mx-7">
       <h1 className="text-3xl font-bold">Products</h1>
-      <div className="grid grid-cols-2 lg:grid-cols-5 w-full my-6 lg:text-xl gap-3">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 w-full my-6 gap-3">
         {card.length > 0 ? (
           card.map((item) => (
             <div
               key={item._id}
-              className="flex flex-col gap-2 bg-white rounded-3xl p-3 lg:max-w-full "
+              className="flex flex-col gap-2 bg-white rounded-3xl p-3 lg:max-w-full w-64 "
             >
               <Link href={`/product/${item.slug}`}>
                 <Image
@@ -44,11 +44,13 @@ const ProductItems = () => {
                   alt={item.name}
                   width={500}
                   height={500}
-                  className="rounded-3xl lg:w-full lg:h-52 h-32 mx-auto object-cover"
+                  className="w-full lg:h-52 h-44 mx-auto object-cover"
                 />
-                <h2 className="text-green-500">{item.name}</h2>
+                <div className="flex flex-row  justify-between my-5">
+                  <h2 className="text-green-500">{item.name}</h2>
+                  <p className=" text-red-500">₹{item.price}</p>
+                </div>
               </Link>
-              <p className=" text-red-500">${item.price}</p>
             </div>
           ))
         ) : (

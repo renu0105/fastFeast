@@ -47,7 +47,7 @@ const Register = () => {
         <span className="mx-auto text-2xl font-bold">Register</span>
       </div>
       <form
-        className="flex flex-col  border-2 border-gray-400 p-6 rounded-2xl h-[50%] gap-6 justify-center my-16 w-[70%] mx-auto"
+        className="flex flex-col border-2 border-gray-400 p-6 rounded-2xl h-[50%] gap-4 justify-center my-16 w-[70%] mx-auto"
         onSubmit={handleSubmit}
       >
         <input

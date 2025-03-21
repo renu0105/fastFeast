@@ -28,22 +28,22 @@ async function ProductDetails({ params }) {
     return <h1>Product not found</h1>;
   }
   return (
-    <div className="flex flex-row gap-12 lg:gap-20 min-h-screen justify-center">
-      <div className="w-fit flex mt-4 h-fit  ">
+    <div className="flex lg:flex-row flex-col gap-12 lg:gap-20 min-h-screen justify-center mx-3">
+      <div className="lg:w-fit flex mt-4 lg:h-fit  ">
         <Image
           src={product.image}
           alt={product.name}
           width={500}
           height={500}
-          className="rounded-3xl w-fit h-[550px] object-cover lg:w-[500px]"
+          className="rounded-3xl w-full h-[550px] object-cover lg:w-[500px]"
         />
       </div>
 
-      <div className="w-[50%] flex flex-col my-3 text-xl lg:gap-8 gap-2  h-fit  lg:h-[550px] lg:justify-center">
+      <div className="lg:w-[50%] flex flex-col my-3 text-xl lg:gap-8 gap-2  h-fit  lg:h-[550px] lg:justify-center">
         <h1 className="text-2xl font-bold">{product.name}</h1>
         <p>{product.description}</p>
 
-        <div className="bg-zinc-600 h-fit w-full text-white rounded-3xl flex flex-col justify-center gap-6 p-6 my-3">
+        <div className="bg-zinc-600 lg:h-fit w-full h-60 text-white rounded-3xl flex flex-col justify-center gap-6 p-6 my-3">
           <span className="flex justify-between">
             <p>Price :</p>
             <p>${product.price}</p>

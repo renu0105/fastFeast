@@ -26,13 +26,13 @@ const Payment = () => {
   return (
     <div className="min-h-screen m-12">
       <CheckoutSteps current={3} />
-      <h1 className="text-center font-bold text-3xl m-9 text-red-900">
+      <h1 className="text-center font-bold text-3xl my-9 text-red-900">
         Payment Method
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-base-100 text-white lg:mx-[30%] rounded-2xl p-5 text-xl"
+        className="flex flex-col border-2 border-gray-400 gap-2 lg:mx-44 rounded-2xl lg:p-5 py-5 lg:w-[35%] px-7"
       >
         {["Net Banking", "Paypal", "Card", "Cash on Delivery"].map(
           (payment) => (
@@ -50,7 +50,7 @@ const Payment = () => {
         )}
         <button
           type="submit"
-          className="bg-purple-500 p-3 rounded-3xl w-full my-6"
+          className="bg-purple-800 p-3 w-44 rounded-2xl mx-auto my-7 "
         >
           Next
         </button>

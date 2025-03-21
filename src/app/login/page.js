@@ -28,7 +28,7 @@ const Login = () => {
         const token = data.token;
         localStorage.setItem("token", token);
         toast.success("Login Successful");
-        router.push("/");
+        router.push("/shipping");
       } else {
         toast.error(data.message);
       }

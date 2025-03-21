@@ -35,12 +35,12 @@ const RecentProducts = () => {
   return (
     <div className="mx-3 lg:mx-7">
       <h1 className="text-3xl font-bold">Recent Products</h1>
-      <div className="grid grid-cols-2 lg:grid-cols-5 w-full my-6 lg:text-xl gap-3">
+      <div className="grid md:grid-cols-2 lg:grid-cols-5 w-full my-6 gap-3">
         {recentProducts.length > 0 ? (
           recentProducts.map((product) => (
             <div
               key={product._id}
-              className="flex flex-col gap-2 bg-white rounded-3xl p-3 max-w-full "
+              className="flex flex-col gap-2 bg-white rounded-3xl p-3 lg:max-w-full w-64"
             >
               <Link href={`/product/${product.slug}`}>
                 <Image
@@ -48,10 +48,12 @@ const RecentProducts = () => {
                   alt="burger"
                   width={200}
                   height={200}
-                  className="rounded-3xl lg:w-full lg:h-52 h-32 mx-auto object-cover"
+                  className="w-full lg:h-52 h-44 mx-auto object-cover"
                 />
-                <p className="text-green-500 ">{product.name}</p>
-                <p className="text-red-600 ">${product.price}</p>
+                <div className="flex flex-row  justify-between my-5">
+                  <p className="text-green-500 ">{product.name}</p>
+                  <p className="text-red-600 ">₹{product.price}</p>
+                </div>
               </Link>
             </div>
           ))

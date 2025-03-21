@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-row mx-7 lg:gap-80">
+      <div className="flex flex-row mx-7 justify-between lg:gap-80">
         <div className="flex flex-col">
           <span className="font-bold lg:text-9xl text-4xl">Choose</span>
           <span className="font-bold lg:text-8xl text-3xl">Your Favorite</span>
